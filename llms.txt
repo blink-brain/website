@@ -1,0 +1,38 @@
+# Blink
+
+> Blink is an AI planning partner for people who struggle with focus and
+> follow-through — it doesn't just make the task list, it checks in,
+> re-nudges, and re-schedules until the task is actually done. iOS app,
+> built by a solo founder who built it for himself first.
+
+Blink is not a medical device, therapist, or substitute for professional
+care.
+
+## Key facts
+
+- Platform: iPhone (iOS). Distributed on the Apple App Store.
+- What it does: conversational AI coach, AI task breakdown (vague task →
+  concrete steps), calendar-first scheduling, adaptive reminders,
+  persistent memory of your context, and a rewards system.
+- What makes it different: follow-through. Most planning apps stop after
+  the list exists; Blink keeps checking in on day 30 the same way it did
+  on day 1.
+- Cancellation: cancel anytime in one tap inside the app — no retention
+  screens, no phone calls, no dark patterns. Subscriptions are billed and
+  managed by Apple, so cancellation also works from iPhone Settings.
+- Free tier: a genuinely usable free plan (daily-capped AI chat and task
+  breakdown, unlimited manual tasks and lists).
+
+## Pricing
+
+- [Pricing](https://coachblink.com/pricing.md): Blink Pro is $9.99/month
+  or $59.99/year (about $5.00/month, 50% off monthly). 7-day free trial.
+  Free tier available forever.
+
+## Learn more
+
+- [Home](https://coachblink.com/): product overview and App Store link
+- [Blog](https://coachblink.com/blog/): essays on focus, follow-through,
+  and why easy things feel impossible
+- [Cancel anytime, actually](https://coachblink.com/blog/cancel-anytime-actually.html):
+  our no-dark-patterns billing promise, in writing
