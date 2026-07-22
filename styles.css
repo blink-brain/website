@@ -1,0 +1,883 @@
+:root {
+  color-scheme: light dark;
+  --teal-light: #5FAC9D;
+  --teal: #3B8272;
+  --teal-dark: #2F6F5F;
+  --navy: #0F172A;
+  --ink: #0F172A;
+  --ink-soft: #3F4B5C;
+  --paper: #FFFFFF;
+  --mist: #F4F8F7;
+  --line: #E3ECE9;
+  --header-bg: rgba(255, 255, 255, 0.9);
+  --muted: #8A93A3;
+  --muted-soft: #A5ACB8;
+  --radius: 16px;
+  --shadow: 0 12px 32px -16px rgba(15, 23, 42, 0.18);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --teal-light: #6ECBB6;
+    --teal: #55B79E;
+    --teal-dark: #7FD4BE;
+    --ink: #F1F5F4;
+    --ink-soft: #AAB6C2;
+    --paper: #0B1420;
+    --mist: #121E2C;
+    --line: #253242;
+    --header-bg: rgba(11, 20, 32, 0.85);
+    --muted: #93A0AF;
+    --muted-soft: #798696;
+    --shadow: 0 12px 32px -16px rgba(0, 0, 0, 0.6);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.55;
+}
+
+h1, h2, h3 {
+  font-family: "Poppins", "Century Gothic", Futura, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5em;
+  color: var(--ink);
+}
+
+p { margin: 0 0 1em; color: var(--ink-soft); }
+
+a { color: var(--teal-dark); }
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header */
+
+/* The header is a permanently dark bar (matches the mockup) regardless of
+   site or OS theme, so its colors are fixed literals, not the tokens. */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(10, 15, 23, 0.92);
+  backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #F4F1EA;
+}
+
+.brand-mark { display: block; }
+
+.brand-word {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  color: #F4F1EA;
+}
+
+.site-nav {
+  display: flex;
+  gap: 28px;
+  flex: 1;
+  justify-content: center;
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: rgba(244, 241, 234, 0.7);
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.site-nav a:hover { color: #FFFFFF; }
+
+/* .badge only ever sits on the permanently-dark header/hero surfaces below,
+   so its colors are fixed literals rather than the light/dark-mode tokens. */
+
+.badge {
+  display: inline-block;
+  background: rgba(95, 172, 157, 0.16);
+  color: var(--teal-light);
+  border: 1px solid rgba(95, 172, 157, 0.35);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge-nav { font-size: 12px; padding: 5px 12px; }
+
+.btn-pill {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  color: #14181D;
+  background: linear-gradient(135deg, var(--teal-light), var(--teal-dark));
+  padding: 9px 20px;
+  border-radius: 999px;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+}
+
+/* Hero — a permanently dark scene (matches the mockup) regardless of site
+   or OS theme, so text/background colors here are fixed literals. */
+
+.hero {
+  position: relative;
+  background: #0B111C;
+  padding: 64px 0;
+}
+
+/* The scene photo fills the content column (same width as the nav/footer
+   content, not the full browser viewport) — a dark scrim over its left
+   side keeps the copy legible while the lit right side (where the phone
+   sits) stays clear, matching the mockup's single continuous backdrop. */
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 70%;
+}
+
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg,
+    rgba(11, 17, 28, 0.94) 0%,
+    rgba(11, 17, 28, 0.86) 30%,
+    rgba(11, 17, 28, 0.5) 55%,
+    rgba(11, 17, 28, 0.12) 78%,
+    rgba(11, 17, 28, 0.1) 100%);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.hero .badge { margin-bottom: 20px; }
+
+.hero h1 {
+  font-size: clamp(34px, 5vw, 52px);
+  line-height: 1.1;
+  color: #F7F5F0;
+}
+
+.lede {
+  font-size: 19px;
+  color: rgba(244, 241, 234, 0.72);
+  max-width: 620px;
+  margin: 0 auto 28px;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 10px;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+.hero-cta-input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 15px;
+  color: #F7F5F0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  padding: 12px 20px;
+}
+
+.hero-cta-input::placeholder { color: rgba(244, 241, 234, 0.45); }
+
+.hero-cta-btn { font-size: 15px; padding: 12px 22px; }
+
+.hero-cta-btn:disabled { opacity: 0.85; cursor: not-allowed; }
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+  padding: 48px 28px;
+}
+
+/* Hero phone — floats over the full-bleed photo, positioned independently
+   of the copy column since the photo is no longer boxed to one side. */
+
+.hero-phone {
+  position: absolute;
+  z-index: 1;
+  top: 12%;
+  bottom: 15%;
+  left: 58%;
+  width: 34%;
+  max-width: 270px;
+  min-width: 150px;
+  transform: rotate(10deg);
+}
+
+/* The screen is deliberately lit (fixed light colors, not the --paper token)
+   regardless of site theme — a phone display reads as "on" against the dark
+   scene in both light and dark mode. */
+
+.hero-phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #FCFBF8;
+  border: 6px solid #14181d;
+  border-radius: 30px;
+  box-shadow: 0 24px 48px -20px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.hero-phone-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.hero-phone-notch {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44%;
+  height: 12px;
+  background: #14181d;
+  border-radius: 8px;
+}
+
+/* Calendar showcase — same permanently-dark treatment as the hero */
+
+.calendar-showcase {
+  position: relative;
+  background: #0B111C;
+  padding: 64px 0;
+  overflow: hidden;
+}
+
+.calendar-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+
+.calendar-copy h2 { color: #F7F5F0; }
+
+.calendar-copy p {
+  color: rgba(244, 241, 234, 0.68);
+  font-size: 16px;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+.calendar-visual {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 40px;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.calendar-panel-shot {
+  flex: 1 1 260px;
+  max-width: 300px;
+  aspect-ratio: 9 / 16;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 48px -20px rgba(0, 0, 0, 0.55);
+}
+
+.calendar-panel-shot-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.now-next {
+  flex: 0 1 200px;
+  max-width: 210px;
+  margin-left: -20px;
+  text-align: left;
+}
+
+.now-next-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(244, 241, 234, 0.55);
+  margin-bottom: 8px;
+}
+
+.now-next-stack { position: relative; }
+
+.now-next-card {
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.6);
+}
+
+.now-next-behind {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  left: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  opacity: 0.7;
+}
+
+.now-next-front {
+  position: relative;
+  background: #F7F5F0;
+}
+
+.now-next-tag {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.now-next-behind .now-next-tag { color: rgba(244, 241, 234, 0.6); }
+.now-next-behind .now-next-title { color: rgba(244, 241, 234, 0.75); }
+
+.now-next-front .now-next-tag { color: var(--teal-dark); }
+
+.now-next-title {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #14181D;
+}
+
+.now-next-sub {
+  margin: 4px 0 0;
+  font-size: 12.5px;
+  color: #5B6472;
+}
+
+/* Icon strip — a fixed light band (mockup's dark/dark/light rhythm is
+   deliberate), so this stays light regardless of site or OS theme too. */
+
+.icon-strip { background: #F1EEE7; padding: 64px 0 72px; }
+
+.icon-strip-inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  text-align: center;
+}
+
+.icon-strip-item { display: flex; flex-direction: column; align-items: center; }
+
+.icon-strip-item svg { color: #14181D; margin-bottom: 16px; }
+
+.icon-strip-item p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #14181D;
+}
+
+/* Strip */
+
+.strip {
+  background: var(--navy);
+  padding: 22px 0;
+}
+
+.strip-inner p {
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Features */
+
+.features { padding: 72px 0; }
+
+.features h2, .who h2, .pricing h2 {
+  text-align: center;
+  font-size: clamp(26px, 3.5vw, 34px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px;
+}
+
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: var(--teal-dark);
+}
+
+.card p { margin: 0; font-size: 15px; }
+
+/* Who */
+
+.who { background: var(--mist); padding: 72px 0; }
+
+.who-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+
+.who-lede { font-size: 17px; }
+
+.who-list {
+  text-align: left;
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 0;
+  display: grid;
+  gap: 12px;
+}
+
+.who-list li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 15.5px;
+  color: var(--ink-soft);
+}
+
+.who-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--teal-light), var(--teal-dark));
+}
+
+/* Pricing */
+
+.pricing { padding: 72px 0; }
+
+.pricing-lede { text-align: center; font-size: 17px; margin-bottom: 40px; }
+
+.plans {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.plan {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px;
+  background: var(--paper);
+}
+
+.plan-featured {
+  border-color: var(--teal);
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.plan-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #5FAC9D, #2F6F5F);
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+.plan h3 { font-size: 20px; margin-bottom: 8px; }
+
+.price {
+  font-family: "Poppins", sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.price span {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  margin-left: 4px;
+}
+
+.price-alt {
+  font-size: 13.5px;
+  color: var(--teal-dark);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.plan-featured .price { margin-top: 0; }
+.plan:not(.plan-featured) .price { margin-top: 2px; }
+.plan:not(.plan-featured) ul { margin-top: 24px; }
+
+.plan ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.plan li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+}
+
+.plan li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-weight: 700;
+}
+
+/* CTA band */
+
+.cta-band {
+  background: linear-gradient(135deg, #5FAC9D, #2F6F5F);
+  padding: 56px 0;
+  text-align: center;
+}
+
+.cta-band-inner { max-width: 560px; margin: 0 auto; }
+
+.cta-band img {
+  margin-bottom: 16px;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.cta-band h2 { color: #FFFFFF; font-size: 26px; }
+
+.cta-band p { color: rgba(255, 255, 255, 0.9); margin: 0; }
+
+/* Footer */
+
+.site-footer {
+  padding: 40px 0 56px;
+  text-align: center;
+}
+
+.footer-mark { display: block; margin: 0 auto 16px; opacity: 0.7; }
+
+@media (prefers-color-scheme: dark) {
+  .footer-mark { filter: brightness(0) invert(1); opacity: 0.75; }
+}
+
+.disclaimer {
+  font-size: 12.5px;
+  color: var(--muted);
+  max-width: 480px;
+  margin: 0 auto 12px;
+}
+
+.copyright {
+  font-size: 12.5px;
+  color: var(--muted-soft);
+  margin: 0;
+}
+
+/* Small desktop / tablet: single column, as authored above (no override needed) */
+
+@media (max-width: 760px) {
+  .site-nav { display: none; }
+  .grid { grid-template-columns: 1fr; }
+  .plans { grid-template-columns: 1fr; }
+  .hero { padding: 56px 0 40px; }
+  .icon-strip-inner { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* Below the desktop hero breakpoint, the phone can't float beside the copy
+   without covering it — stack it under the text instead. */
+
+@media (max-width: 879px) {
+  .hero-inner { min-height: 0; }
+
+  .hero-phone {
+    position: static;
+    width: 55%;
+    max-width: 220px;
+    aspect-ratio: 9 / 18.5;
+    margin: 28px auto 0;
+    transform: rotate(6deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .wrap { padding: 0 18px; }
+  .brand-word { font-size: 18px; }
+  .lede { font-size: 17px; }
+  .hero-cta { flex-direction: column; }
+  .card { padding: 20px; }
+  .plan { padding: 24px; }
+  .price { font-size: 32px; }
+}
+
+/* Desktop: hero and the calendar showcase become two-column layouts,
+   matching the mockup. Below this they stay single-column and centered. */
+
+@media (min-width: 880px) {
+  .hero-inner {
+    max-width: 1160px;
+    min-height: 600px;
+    text-align: left;
+  }
+
+  .hero-copy { max-width: 520px; padding: 56px 56px; }
+
+  .hero-copy .lede { margin-left: 0; margin-right: 0; }
+  .hero-cta { margin-left: 0; }
+
+  .calendar-inner {
+    max-width: 1080px;
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    align-items: center;
+    gap: 56px;
+    text-align: left;
+  }
+
+  .calendar-copy p { margin-left: 0; }
+  .calendar-visual { margin-top: 0; margin-left: 0; justify-content: flex-start; }
+}
+
+/* Wide desktop and ultra-wide monitors: open up the canvas and let the
+   sections that were single centered columns pair up side by side instead
+   of stretching into an ever-wider single column. */
+
+@media (min-width: 1400px) {
+  .wrap { max-width: 1240px; }
+
+  .who-inner {
+    max-width: 1240px;
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 64px;
+    align-items: start;
+    text-align: left;
+  }
+
+  .who-copy { position: sticky; top: 110px; }
+
+  .who-lede { max-width: none; }
+
+  .who-list { margin-top: 4px; }
+}
+
+@media (min-width: 1800px) {
+  .wrap { max-width: 1360px; }
+}
+
+/* Page header (blog index, blog posts, legal pages) */
+
+.page-header {
+  background: linear-gradient(180deg, var(--mist) 0%, var(--paper) 100%);
+  padding: 56px 0 40px;
+  text-align: center;
+}
+
+.page-header h1 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 10px; }
+
+.page-header .lede { margin: 0 auto; }
+
+.page-meta {
+  font-size: 13.5px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+/* Blog index */
+
+.blog-list {
+  padding: 56px 0 80px;
+}
+
+.post-list {
+  display: grid;
+  gap: 20px;
+  max-width: 760px;
+  margin: 40px auto 0;
+}
+
+.post-card {
+  display: block;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-decoration: none;
+  background: var(--paper);
+  transition: border-color 0.15s ease;
+}
+
+.post-card:hover { border-color: var(--teal); }
+
+.post-card-date {
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--teal);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.post-card h2 {
+  font-size: 21px;
+  margin-bottom: 8px;
+}
+
+.post-card p {
+  margin: 0;
+  font-size: 15px;
+}
+
+/* Article (single blog post, legal pages) */
+
+.article {
+  padding: 8px 0 80px;
+}
+
+.article-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.article-inner h2 {
+  font-size: 24px;
+  margin-top: 1.6em;
+}
+
+.article-inner h3 {
+  font-size: 19px;
+  margin-top: 1.4em;
+}
+
+.article-inner p, .article-inner li {
+  font-size: 16.5px;
+  color: var(--ink-soft);
+}
+
+.article-inner ul, .article-inner ol {
+  padding-left: 22px;
+}
+
+.article-inner li { margin-bottom: 8px; }
+
+.article-inner a { text-decoration: underline; }
+
+.back-link {
+  display: inline-block;
+  margin: 32px 0 8px;
+  font-size: 14.5px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--teal-dark);
+}
+
+.article-callout {
+  background: var(--mist);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin: 24px 0;
+}
+
+.article-callout p:last-child { margin-bottom: 0; }
+
+/* Legal-page specific: denser body text, numbered sections read like a policy */
+
+.legal .article-inner h2 { font-size: 20px; }
+
+.legal .article-inner p, .legal .article-inner li {
+  font-size: 15.5px;
+  line-height: 1.65;
+}
+
+@media (max-width: 480px) {
+  .article-inner p, .article-inner li { font-size: 15.5px; }
+  .post-card { padding: 20px; }
+}
